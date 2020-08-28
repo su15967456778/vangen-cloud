@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/vangen-client/vangen-client.iml" filepath="$PROJECT_DIR$/vangen-client/vangen-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/vangen-cloud.iml" filepath="$PROJECT_DIR$/.idea/vangen-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vangen-eureka/vangen-eureka.iml" filepath="$PROJECT_DIR$/vangen-eureka/vangen-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vangen-service/vangen-service.iml" filepath="$PROJECT_DIR$/vangen-service/vangen-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vangen-zuul/vangen-zuul.iml" filepath="$PROJECT_DIR$/vangen-zuul/vangen-zuul.iml" />
+    </modules>
+  </component>
+</project>
