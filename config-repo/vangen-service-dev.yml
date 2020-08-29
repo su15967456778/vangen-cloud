@@ -1,0 +1,9 @@
+server:
+  port: 8051
+spring:
+  application:
+    name: vangen-service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
