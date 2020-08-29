@@ -1,14 +1,7 @@
-server:
-  port: 8151
-
 spring:
-  application:
-    name: vangen-Client
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://127.0.0.1:8000/eureka/
-feign:
-  hystrix:
-    enabled: true
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: vangen-client
+      label: master
+      profile: dev
