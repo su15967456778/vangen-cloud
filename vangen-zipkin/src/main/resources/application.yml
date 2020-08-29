@@ -1,0 +1,9 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: vangen-zipkin
+      label: master
+      profile: dev
