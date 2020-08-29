@@ -3,6 +3,10 @@ spring:
     base-url: http://localhost:9411spring
   application:
     name: vangen-zuul
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
 server:
   port: 7999
 eureka:

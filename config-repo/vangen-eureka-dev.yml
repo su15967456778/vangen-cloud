@@ -3,6 +3,10 @@ server:
 spring:
   zipkin:
     base-url: http://localhost:9411
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
 eureka:
   instance:
     hostname: localhost
