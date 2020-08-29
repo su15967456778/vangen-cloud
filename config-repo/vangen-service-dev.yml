@@ -1,11 +1,11 @@
-spring:
-  zipkin:
-    base-url: http://localhost:9411
+
 server:
   port: 8051
 spring:
   application:
     name: vangen-service
+  zipkin:
+    base-url: http://localhost:9411
 eureka:
   client:
     serviceUrl:
