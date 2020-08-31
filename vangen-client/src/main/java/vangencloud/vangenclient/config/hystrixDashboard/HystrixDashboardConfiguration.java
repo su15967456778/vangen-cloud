@@ -1,4 +1,4 @@
-package vangencloud.vangenclient.config;
+package vangencloud.vangenclient.config.hystrixDashboard;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
