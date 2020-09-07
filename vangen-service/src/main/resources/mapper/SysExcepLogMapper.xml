@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="vangencloud.vangenservice.mapper.SysExcepLogMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="vangencloud.vangenservice.pojo.SysExcepLog" id="sysExcepLogMap">
+        <result property="id" column="id"/>
+        <result property="excepFilePath" column="excep_file_path"/>
+        <result property="excepContent" column="excep_content"/>
+        <result property="excepLine" column="excep_line"/>
+        <result property="excepColumn" column="excep_column"/>
+        <result property="excepTime" column="excep_time"/>
+        <result property="excepMsg" column="excep_msg"/>
+        <result property="excepStack" column="excep_stack"/>
+        <result property="excepUrl" column="excep_url"/>
+        <result property="excepUserAgent" column="excep_user_agent"/>
+        <result property="excepStatusCode" column="excep_status_code"/>
+        <result property="excepReq" column="excep_req"/>
+        <result property="excepRes" column="excep_res"/>
+        <result property="username" column="username"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="queryObject" resultType="vangencloud.vangenservice.pojo.SysExcepLog">
+		select * from sys_excep_log where id = #{value}
+	</select>
+
+    <select id="queryList" resultType="vangencloud.vangenservice.pojo.SysExcepLog">
+        select * from sys_excep_log
+        <where>
+            <if test="excepFilePath != null">`excep_file_path` = #{excepFilePath},</if>
+            <if test="excepContent != null">`excep_content` = #{excepContent},</if>
+            <if test="excepLine != null">`excep_line` = #{excepLine},</if>
+            <if test="excepColumn != null">`excep_column` = #{excepColumn},</if>
+            <if test="excepTime != null">`excep_time` = #{excepTime},</if>
+            <if test="excepMsg != null">`excep_msg` = #{excepMsg},</if>
+            <if test="excepStack != null">`excep_stack` = #{excepStack},</if>
+            <if test="excepUrl != null">`excep_url` = #{excepUrl},</if>
+            <if test="excepUserAgent != null">`excep_user_agent` = #{excepUserAgent},</if>
+            <if test="excepStatusCode != null">`excep_status_code` = #{excepStatusCode},</if>
+            <if test="excepReq != null">`excep_req` = #{excepReq},</if>
+            <if test="excepRes != null">`excep_res` = #{excepRes},</if>
+            <if test="username != null">`username` = #{username},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime}</if>
+        </where>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from sys_excep_log 
+	</select>
+
+    <insert id="save" parameterType="vangencloud.vangenservice.pojo.SysExcepLog" useGeneratedKeys="true"
+            keyProperty="id">
+		insert into sys_excep_log
+		(
+			`excep_file_path`, 
+			`excep_content`, 
+			`excep_line`, 
+			`excep_column`, 
+			`excep_time`, 
+			`excep_msg`, 
+			`excep_stack`, 
+			`excep_url`, 
+			`excep_user_agent`, 
+			`excep_status_code`, 
+			`excep_req`, 
+			`excep_res`, 
+			`username`, 
+			`create_time`, 
+			`update_time`
+		)
+		values
+		(
+			#{excepFilePath}, 
+			#{excepContent}, 
+			#{excepLine}, 
+			#{excepColumn}, 
+			#{excepTime}, 
+			#{excepMsg}, 
+			#{excepStack}, 
+			#{excepUrl}, 
+			#{excepUserAgent}, 
+			#{excepStatusCode}, 
+			#{excepReq}, 
+			#{excepRes}, 
+			#{username}, 
+			#{createTime}, 
+			#{updateTime}
+		)
+	</insert>
+
+    <update id="update" parameterType="vangencloud.vangenservice.pojo.SysExcepLog">
+        update sys_excep_log
+        <set>
+            <if test="excepFilePath != null">`excep_file_path` = #{excepFilePath},</if>
+            <if test="excepContent != null">`excep_content` = #{excepContent},</if>
+            <if test="excepLine != null">`excep_line` = #{excepLine},</if>
+            <if test="excepColumn != null">`excep_column` = #{excepColumn},</if>
+            <if test="excepTime != null">`excep_time` = #{excepTime},</if>
+            <if test="excepMsg != null">`excep_msg` = #{excepMsg},</if>
+            <if test="excepStack != null">`excep_stack` = #{excepStack},</if>
+            <if test="excepUrl != null">`excep_url` = #{excepUrl},</if>
+            <if test="excepUserAgent != null">`excep_user_agent` = #{excepUserAgent},</if>
+            <if test="excepStatusCode != null">`excep_status_code` = #{excepStatusCode},</if>
+            <if test="excepReq != null">`excep_req` = #{excepReq},</if>
+            <if test="excepRes != null">`excep_res` = #{excepRes},</if>
+            <if test="username != null">`username` = #{username},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from sys_excep_log where id = #{value}
+	</delete>
+
+    <delete id="deleteBatch">
+        delete from sys_excep_log where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
