@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/vangencloud
+    url: jdbc:mysql://localhost:3306/vangencloud?characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: root
   application:
