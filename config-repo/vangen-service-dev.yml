@@ -20,3 +20,6 @@ eureka:
       defaultZone: http://localhost:8000/eureka/
 mconfig:
   swagger-ui-open: true
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*.xml
