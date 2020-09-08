@@ -1,10 +1,11 @@
 package vangencloud.vangenservice.pojo.SysExcepLogDto;
 
 import vangencloud.vangenservice.pojo.SysExcepLog;
-import vangencloud.vangenservice.utils.Paging;
+import vangencloud.vangenservice.pojo.SysExcepLogDtl;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -14,9 +15,10 @@ import java.util.Date;
  * @email sunlightcs@gmail.com
  * @date 2020-09-07 09:23:47
  */
-public class SysExcepLogListRequest implements Serializable {
+public class SysExcepLogDtlResult implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private Integer id;
     //前端异常文件
     private String excepFilePath;
     //异常代码块
@@ -43,10 +45,10 @@ public class SysExcepLogListRequest implements Serializable {
     private String excepRes;
     //异常用户 id 或者name 待定 后端处理
     private String username;
-    private Paging page;
+    //前端异常操作过程记录
+    private List<SysExcepLogDtl> sysExcepLogDtls;
 
-
-    public SysExcepLogListRequest() {
+    public SysExcepLogDtlResult() {
 
         this.excepFilePath = excepFilePath;
         this.excepContent = excepContent;
@@ -63,12 +65,12 @@ public class SysExcepLogListRequest implements Serializable {
         this.username = username;
     }
 
-    public Paging getPage() {
-        return page;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPage(Paging page) {
-        this.page = page;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
@@ -253,8 +255,16 @@ public class SysExcepLogListRequest implements Serializable {
         this.username = username;
     }
 
-    public SysExcepLogListPara toSysExcepLog() {
-        SysExcepLogListPara sysExcepLog = new SysExcepLogListPara();
+    public List<SysExcepLogDtl> getSysExcepLogDtls() {
+        return sysExcepLogDtls;
+    }
+
+    public void setSysExcepLogDtls(List<SysExcepLogDtl> sysExcepLogDtls) {
+        this.sysExcepLogDtls = sysExcepLogDtls;
+    }
+
+    public SysExcepLog toSysExcepLog() {
+        SysExcepLog sysExcepLog = new SysExcepLog();
         sysExcepLog.setExcepFilePath(this.excepFilePath);
         sysExcepLog.setExcepContent(this.excepContent);
         sysExcepLog.setExcepLine(this.excepLine);
@@ -268,7 +278,6 @@ public class SysExcepLogListRequest implements Serializable {
         sysExcepLog.setExcepReq(this.excepReq);
         sysExcepLog.setExcepRes(this.excepRes);
         sysExcepLog.setUsername(this.username);
-        sysExcepLog.setPage(this.page);
         return sysExcepLog;
     }
 

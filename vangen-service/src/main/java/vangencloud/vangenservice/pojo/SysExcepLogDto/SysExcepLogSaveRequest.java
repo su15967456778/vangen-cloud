@@ -1,9 +1,11 @@
 package vangencloud.vangenservice.pojo.SysExcepLogDto;
 
 import vangencloud.vangenservice.pojo.SysExcepLog;
+import vangencloud.vangenservice.pojo.SysExcepLogDtl;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -16,6 +18,7 @@ import java.util.Date;
 public class SysExcepLogSaveRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    private Integer id;
     //前端异常文件
     private String excepFilePath;
     //异常代码块
@@ -42,6 +45,8 @@ public class SysExcepLogSaveRequest implements Serializable {
     private String excepRes;
     //异常用户 id 或者name 待定 后端处理
     private String username;
+    //前端异常操作过程记录
+    private List<SysExcepLogDtl> sysExcepLogDtls;
 
     public SysExcepLogSaveRequest() {
 
@@ -58,6 +63,14 @@ public class SysExcepLogSaveRequest implements Serializable {
         this.excepReq = excepReq;
         this.excepRes = excepRes;
         this.username = username;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     /**
@@ -240,6 +253,14 @@ public class SysExcepLogSaveRequest implements Serializable {
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public List<SysExcepLogDtl> getSysExcepLogDtls() {
+        return sysExcepLogDtls;
+    }
+
+    public void setSysExcepLogDtls(List<SysExcepLogDtl> sysExcepLogDtls) {
+        this.sysExcepLogDtls = sysExcepLogDtls;
     }
 
     public SysExcepLog toSysExcepLog() {

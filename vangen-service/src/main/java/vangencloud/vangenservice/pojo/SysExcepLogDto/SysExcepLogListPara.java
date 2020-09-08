@@ -14,7 +14,7 @@ import java.util.Date;
  * @email sunlightcs@gmail.com
  * @date 2020-09-07 09:23:47
  */
-public class SysExcepLogListRequest implements Serializable {
+public class SysExcepLogListPara implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //前端异常文件
@@ -46,7 +46,7 @@ public class SysExcepLogListRequest implements Serializable {
     private Paging page;
 
 
-    public SysExcepLogListRequest() {
+    public SysExcepLogListPara() {
 
         this.excepFilePath = excepFilePath;
         this.excepContent = excepContent;
@@ -253,23 +253,5 @@ public class SysExcepLogListRequest implements Serializable {
         this.username = username;
     }
 
-    public SysExcepLogListPara toSysExcepLog() {
-        SysExcepLogListPara sysExcepLog = new SysExcepLogListPara();
-        sysExcepLog.setExcepFilePath(this.excepFilePath);
-        sysExcepLog.setExcepContent(this.excepContent);
-        sysExcepLog.setExcepLine(this.excepLine);
-        sysExcepLog.setExcepColumn(this.excepColumn);
-        sysExcepLog.setExcepTime(this.excepTime);
-        sysExcepLog.setExcepMsg(this.excepMsg);
-        sysExcepLog.setExcepStack(this.excepStack);
-        sysExcepLog.setExcepUrl(this.excepUrl);
-        sysExcepLog.setExcepUserAgent(this.excepUserAgent);
-        sysExcepLog.setExcepStatusCode(this.excepStatusCode);
-        sysExcepLog.setExcepReq(this.excepReq);
-        sysExcepLog.setExcepRes(this.excepRes);
-        sysExcepLog.setUsername(this.username);
-        sysExcepLog.setPage(this.page);
-        return sysExcepLog;
-    }
 
 }

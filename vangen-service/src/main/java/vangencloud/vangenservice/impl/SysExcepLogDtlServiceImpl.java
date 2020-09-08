@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vangencloud.vangenservice.mapper.SysExcepLogDtlMapper;
 import vangencloud.vangenservice.pojo.SysExcepLogDtl;
+import vangencloud.vangenservice.pojo.SysExcepLogDto.SysExcepLogSaveRequest;
 import vangencloud.vangenservice.service.SysExcepLogDtlService;
 
 import java.util.List;
@@ -32,6 +33,14 @@ public class SysExcepLogDtlServiceImpl implements SysExcepLogDtlService {
     @Override
     public void save(SysExcepLogDtl sysExcepLogDtl) {
         sysExcepLogDtlMapper.save(sysExcepLogDtl);
+    }
+
+    @Override
+    public void saveDtl(SysExcepLogSaveRequest sysExcepLogSaveRequest) {
+        for (SysExcepLogDtl sysExcepLogDtl : sysExcepLogSaveRequest.getSysExcepLogDtls()) {
+            sysExcepLogDtl.setExcepLogId(sysExcepLogSaveRequest.getId());
+            sysExcepLogDtlMapper.save(sysExcepLogDtl);
+        }
     }
 
     @Override

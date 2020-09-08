@@ -1,6 +1,7 @@
 package vangencloud.vangenservice.service;
 
 import vangencloud.vangenservice.pojo.SysExcepLogDtl;
+import vangencloud.vangenservice.pojo.SysExcepLogDto.SysExcepLogSaveRequest;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
 /**
  * 前端异常操作过程流水表
  *
- * @author chenshun
+ * @author SLF
  * @email sunlightcs@gmail.com
  * @date 2020-09-07 09:23:47
  */
@@ -21,6 +22,8 @@ public interface SysExcepLogDtlService {
     int queryTotal();
 
     void save(SysExcepLogDtl sysExcepLogDtl);
+
+    void saveDtl(SysExcepLogSaveRequest sysExcepLogSaveRequest);
 
     void update(SysExcepLogDtl sysExcepLogDtl);
 

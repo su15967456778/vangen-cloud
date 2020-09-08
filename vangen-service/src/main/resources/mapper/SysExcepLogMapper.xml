@@ -23,12 +23,115 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-    <select id="queryObject" resultType="vangencloud.vangenservice.pojo.SysExcepLog">
-		select * from sys_excep_log where id = #{value}
+    <resultMap type="vangencloud.vangenservice.pojo.SysExcepLogDto.SysExcepLogDtlResult" id="sysExcepLogDtlMap">
+        <result property="id" column="logId"/>
+        <result property="excepFilePath" column="excep_file_path"/>
+        <result property="excepContent" column="excep_content"/>
+        <result property="excepLine" column="excep_line"/>
+        <result property="excepColumn" column="excep_column"/>
+        <result property="excepTime" column="excep_time"/>
+        <result property="excepMsg" column="excep_msg"/>
+        <result property="excepStack" column="excep_stack"/>
+        <result property="excepUrl" column="excep_url"/>
+        <result property="excepUserAgent" column="excep_user_agent"/>
+        <result property="excepStatusCode" column="excep_status_code"/>
+        <result property="excepReq" column="excep_req"/>
+        <result property="excepRes" column="excep_res"/>
+        <result property="username" column="username"/>
+        <collection property="sysExcepLogDtls" ofType="vangencloud.vangenservice.pojo.SysExcepLogDtl">
+            <!-- 定义这个集合中元素的封装规则 -->
+            <result column="oper_type" property="operType"/>
+            <result column="oper_data" property="operData"/>
+            <result column="oper_time" property="operTime"/>
+            <result column="create_time" property="createTime"/>
+            <result column="update_time" property="updateTime"/>
+            <result column="excep_log_id" property="excepLogId"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryObjectById" resultMap="sysExcepLogDtlMap">
+		select
+		log.`id` logId,
+		log.`excep_file_path`,
+        log.`excep_content`,
+        log.`excep_line`,
+        log.`excep_column`,
+        log.`excep_time`,
+        log.`excep_msg`,
+        log.`excep_stack`,
+        log.`excep_url`,
+        log.`excep_user_agent`,
+        log.`excep_status_code`,
+        log.`excep_req`,
+        log.`excep_res`,
+        log.`username`,
+        log.`create_time`,
+        log.`update_time`,
+        logdtl.`oper_type`,
+		logdtl.`oper_data`,
+		logdtl.`oper_time`,
+		logdtl.`create_time`,
+		logdtl.`update_time`,
+		logdtl.`excep_log_id`
+         from sys_excep_log log
+         left join sys_excep_log_dtl logdtl on log.id = logdtl.excep_log_id
+         where log.id = #{id}
 	</select>
 
     <select id="queryList" resultType="vangencloud.vangenservice.pojo.SysExcepLog">
-        select * from sys_excep_log
+        select `excep_file_path`,
+        `excep_content`,
+        `excep_line`,
+        `excep_column`,
+        `excep_time`,
+        `excep_msg`,
+        `excep_stack`,
+        `excep_url`,
+        `excep_user_agent`,
+        `excep_status_code`,
+        `excep_req`,
+        `excep_res`,
+        `username`,
+        `create_time`,
+        `update_time`
+        from sys_excep_log
+        <where>
+            <if test="excepFilePath != null">`excep_file_path` = #{excepFilePath},</if>
+            <if test="excepContent != null">`excep_content` = #{excepContent},</if>
+            <if test="excepLine != null">`excep_line` = #{excepLine},</if>
+            <if test="excepColumn != null">`excep_column` = #{excepColumn},</if>
+            <if test="excepTime != null">`excep_time` = #{excepTime},</if>
+            <if test="excepMsg != null">`excep_msg` = #{excepMsg},</if>
+            <if test="excepStack != null">`excep_stack` = #{excepStack},</if>
+            <if test="excepUrl != null">`excep_url` = #{excepUrl},</if>
+            <if test="excepUserAgent != null">`excep_user_agent` = #{excepUserAgent},</if>
+            <if test="excepStatusCode != null">`excep_status_code` = #{excepStatusCode},</if>
+            <if test="excepReq != null">`excep_req` = #{excepReq},</if>
+            <if test="excepRes != null">`excep_res` = #{excepRes},</if>
+            <if test="username != null">`username` = #{username},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime}</if>
+        </where>
+    </select>
+    <select id="queryByListRequest" parameterType="vangencloud.vangenservice.pojo.SysExcepLogDto.SysExcepLogListPara"
+            resultType="vangencloud.vangenservice.pojo.SysExcepLog">
+        select
+        `excep_file_path`,
+        `excep_content`,
+        `excep_line`,
+        `excep_column`,
+        `excep_time`,
+        `excep_msg`,
+        `excep_stack`,
+        `excep_url`,
+        `excep_user_agent`,
+        `excep_status_code`,
+        `excep_req`,
+        `excep_res`,
+        `username`,
+        `create_time`,
+        `update_time`
+        from sys_excep_log
         <where>
             <if test="excepFilePath != null">`excep_file_path` = #{excepFilePath},</if>
             <if test="excepContent != null">`excep_content` = #{excepContent},</if>

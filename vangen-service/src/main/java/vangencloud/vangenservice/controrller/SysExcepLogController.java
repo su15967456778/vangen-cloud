@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import vangencloud.vangenservice.pojo.SysExcepLog;
+import vangencloud.vangenservice.pojo.SysExcepLogDto.SysExcepLogDtlResult;
 import vangencloud.vangenservice.pojo.SysExcepLogDto.SysExcepLogListRequest;
+import vangencloud.vangenservice.pojo.SysExcepLogDto.SysExcepLogSaveRequest;
+import vangencloud.vangenservice.service.SysExcepLogDtlService;
 import vangencloud.vangenservice.service.SysExcepLogService;
 import vangencloud.vangenservice.utils.R;
 
@@ -19,7 +22,7 @@ import vangencloud.vangenservice.utils.R;
 /**
  * 前端异常记录流水表
  *
- * @author chenshun
+ * @author SLF
  * @email sunlightcs@gmail.com
  * @date 2020-09-07 09:23:47
  */
@@ -29,6 +32,8 @@ import vangencloud.vangenservice.utils.R;
 public class SysExcepLogController {
     @Autowired
     private SysExcepLogService sysExcepLogService;
+    @Autowired
+    private SysExcepLogDtlService sysExcepLogDtlService;
 
     /**
      * 列表
@@ -47,7 +52,7 @@ public class SysExcepLogController {
     @RequestMapping("/info/{id}")
     @ApiOperation(value = "查询异常记录详情", httpMethod = "POST", notes = "查询异常记录详情")
     public R info(@PathVariable("id") Integer id) {
-        SysExcepLog sysExcepLog = sysExcepLogService.queryObject(id);
+        SysExcepLogDtlResult sysExcepLog = sysExcepLogService.queryObjectById(id);
         return R.ok().put("sysExcepLog", sysExcepLog);
     }
 
@@ -56,30 +61,11 @@ public class SysExcepLogController {
      */
     @RequestMapping("/save")
     @ApiOperation(value = "保存", httpMethod = "POST", notes = "保存")
-    public R save(@RequestBody SysExcepLog sysExcepLog) {
-        sysExcepLogService.save(sysExcepLog);
+    public R save(@RequestBody SysExcepLogSaveRequest sysExcepLogSaveRequest) {
+        sysExcepLogSaveRequest.setId(sysExcepLogService.save(sysExcepLogSaveRequest.toSysExcepLog()));
+        sysExcepLogDtlService.saveDtl(sysExcepLogSaveRequest);
         return R.ok();
     }
 
-    /**
-     * 修改
-     */
-    @RequestMapping("/update")
-    @ApiOperation(value = "更新", httpMethod = "POST", notes = "更新")
-    public R update(@RequestBody SysExcepLog sysExcepLog) {
-        sysExcepLogService.update(sysExcepLog);
-
-        return R.ok();
-    }
-
-    /**
-     * 删除
-     */
-    @RequestMapping("/delete")
-    @ApiOperation(value = "删除", httpMethod = "POST", notes = "删除")
-    public R delete(@RequestBody Integer[] ids) {
-        sysExcepLogService.deleteBatch(ids);
-        return R.ok();
-    }
 
 }
