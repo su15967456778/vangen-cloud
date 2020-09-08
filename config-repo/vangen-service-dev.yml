@@ -21,5 +21,4 @@ eureka:
 mconfig:
   swagger-ui-open: true
 mybatis:
-  config-location: classpath:mybatis-config.xml
   mapper-locations: classpath:mapper/*.xml
